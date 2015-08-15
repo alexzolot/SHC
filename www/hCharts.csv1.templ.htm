@@ -1,0 +1,70 @@
+<div id='HighCharts' class='HC_Block'> </div> <!-- for new_block only -->
+
+<script>
+
+iBlock++; BlocksHC['block'+ iBlock]= {}; // for new_block only 
+
+i= nCha;
+// $('<div>', {id: 'hChart' + iChart}).css({height:251, width:'90%', border:'1px solid lightgrey'
+//     , display:'block'}).appendTo('#HighCharts');
+// $('#hChart'+iChart).css({height:150});
+
+		
+$('#HighCharts').append('<div id="resizer'+iChart +'" class="resizer" style="min-width: 500px; min-height: 20px; border: 1px solid silver">' +
+		  '<div class="inner-resizer" style="padding: 10px">'+  /* make room for the resize handle */
+		      '<div id="hChart'+iChart +'" class="hCha" style="height: 300px">' + //'  <--, border:\'1px solid red\'">'+
+		  '</div></div></div>'
+); 	
+$(window).resize();
+		
+
+//$('#HighCharts').append("<div class='resizer' style='border-width: 5px;height:90px;width:600px'><div id='hChart" +iChart+"' style='height:90px;width:600px'></div></div>'")
+//$('.resizer').resizable();  // does not work?? http://jsfiddle.net/PDRsk/47/
+
+var chOptions1= $.extend(true /* deep */, {}, chOptions0, {drag: true, 
+	   chart: {renderTo: 'hChart'+iChart}
+	 , title: {text: '_ma'} 
+     , subtitle: {text: ''}
+     , data: {csv: '_csv'}
+     , yAxis: [{title: {text: '_ylab'}
+                , type: 'linear'
+                /* _yAxisLog  , type: 'logarithmic' /**/
+              }] // left y axis
+     //, series: [{yAxis: 1}]
+	}    
+);
+
+
+
+cha1=  new Highcharts.Chart(chOptions1, syncronizeCrossHairs);   
+
+
+$('#resizer'+iChart).draggable().resizable({
+// nOK	$('.resizer').draggable().resizable({
+    // On resize, set the chart size to that of the
+    // resizer minus padding. If your chart has a lot of data or other
+    // content, the redrawing might be slow. In that case, we recommend
+    // that you use the 'stop' event instead of 'resize'.
+    
+     resize: function () {
+        $(this).find(".hCha").highcharts().setSize(
+            this.offsetWidth - 20,
+            this.offsetHeight - 20,
+            false
+        );
+    }
+	})
+	.dblclick(function(){ //pin and unpin druggging
+	       dr= $(this).find('.hCha').highcharts().options.drag;
+	       $(this).draggable(dr? "disable": "enable");
+	       $(this).find('.hCha').highcharts().options.drag= ! dr;
+    });
+
+
+
+nCha= i= iChart= cha.push(cha1);
+
+cha1.aBlock= cha1.options.aBlock= 'block'+ iBlock;
+BlocksHC['block'+ iBlock]['hChart' + iChart]= {ich:iChart, id:'hChart'+iChart, cha:cha1};
+cl('Done: block'+ iBlock, 'hChart'+iChart, '_ma')
+</script>
