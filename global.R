@@ -76,7 +76,7 @@
  	} 
     
     ecof= function(codf,..., v=T, exec=T, e=parent.frame()){code<-sf(codf,...); if(v) prr(sf('ecof("%s")', code));  if(exec)eval(parse(text=code), envir= e) }
-    
+    pasc= function(..., coll= ',') pas(..., collapse= coll)
     
 #' install + library
 #p gh github username 
