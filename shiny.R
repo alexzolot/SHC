@@ -30,7 +30,7 @@ m= fread('in/data.tsv')
 
 hmd= function(...) HTML(markdownToHTML(..., fragment.only =T))
 
-ui<-  fluidPage( h1('Dynamic synchronized timeseries with Shiny and  Highcharts JS, by Alex Zolot'),
+ui<-  fluidPage( h1('Dynamic synchronized time series with Shiny and  Highcharts JS, by Alex Zolot'),
         tabsetPanel(type = "pills", id='tsp1', position= "left", selected= "TS1"  #type = "tabs"  # Model Performance, Time Series"
                  , tabPanel('Data',dataTableOutput('dtable'))
                  , tabPanel('TS-fixed'
@@ -150,8 +150,7 @@ For.Meetup= function(){
     	 libra(devtools)
          devtools::install_github('rstudio/shinyapps')
          library(shinyapps)
-         shinyapps::setAccountInfo(name='alexzolot', token='6FC9BFE0E441A67200046D6D0B0F95D1'
-         , secret='GPxDhI+Rpv+lziX5NYBvLwzulpWuulhOabHInsZ1') 
+         shinyapps::setAccountInfo(name='alexzolot', token='6FC9BFE0E441A67200046D6D0B0F95D1', secret='GPxDhI+Rpv+lziX5NYBvLwzulpWuulhOabHInsZ1') 
          # sw("M:/56_block_highchartsTS/clean");  expl()
         shinyapps::deployApp('.')        
         shinyapps::deployApp()        
