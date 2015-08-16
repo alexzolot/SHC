@@ -17,8 +17,8 @@
 
 	options(datatable.print.nrows=200)
 
-    setwd('M:/56_block_highchartsTS/clean')
-    
+ 	onWin= Sys.getenv('R_PLATFORM')==''
+    if(onWin) setwd('M:/56_block_highchartsTS/clean')   
 
     source('global.R')  
     source('lib/funcs.R')  # , T, verbose=T)

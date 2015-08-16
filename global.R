@@ -19,7 +19,6 @@
 	options(datatable.print.nrows=200)
     
 	onWin= Sys.getenv('R_PLATFORM')==''
-#	root= '.'
     if(onWin) setwd('M:/56_block_highchartsTS/clean')
 
 
