@@ -22,9 +22,6 @@
 
     source('global.R')  
     source('lib/funcs.R')  # , T, verbose=T)
-    
-#	libra(RColorBrewer)  # display.brewer.all()
-#	palette(c(adjustcolor(cn('grey50 blue3 red2'), alpha.f = .6), brewer.pal(8,"Dark2")))  # plot(1:19, pch=16, col=1:19, cex=3)
 	
 } #--
 ##########################################################
@@ -35,45 +32,41 @@ hmd= function(...) HTML(markdownToHTML(..., fragment.only =T))
 
 ui<-  fluidPage( h1('Dynamic synchronized timeseries with Shiny and  Highcharts JS, by Alex Zolot'),
         tabsetPanel(type = "pills", id='tsp1', position= "left", selected= "TS1"  #type = "tabs"  # Model Performance, Time Series"
-                , {tpd= tabPanel('Data',dataTableOutput('dtable'))}
-                , {tp1= tabPanel('TS-fixed'
+                 , tabPanel('Data',dataTableOutput('dtable'))
+                 , tabPanel('TS-fixed'
                                     ,  mainPanel(
                                             HTML(HC.header %+% '\n')
                                             , hmd(text ='Model independent stats `imp  ~ date` by  `treat`:')
-                                            , HTML({h= build.1hChart.htm(scsv= ecof('dcast.data.table(m, day ~ treat, sum, value.var="imp")') %>%
+                                            , HTML(build.1hChart.htm(scsv= ecof('dcast.data.table(m, day ~ treat, sum, value.var="imp")') %>%
                                                                         setkey(day)  %>% dtt2scsv
                                                                 , ma= 'Model independent stats:  imps  by  treat'
                                                                 , ylab= yy['imp']$label, add= F, div.id='HiCharts', yAxisLog=FALSE
                                                         , htm1templ = "www/hCharts.csv1.templ.htm")
-                                                        h
-                                                    })
+                                                   )
                                             , HTML(build.1hChart.htm(scsv= ecof('dcast.data.table(m, date ~ pars+model, mean, value.var="auc")') %>%
                                                                     setkey(date) %>% dtt2scsv %>% gsub('NA|NaN', 'null',.)
                                                     , ma= 'Model dependent KPI: AUC  by  pars + model'
                                                     , ylab= yy['auc']$label, add= T, div.id='HiCharts', htm1templ = "www/hCharts.csv1.templ.htm"))
                                             #, hmd(text ='Dynamic output from shiny server:')
                                             , htmlOutput('hO')
-
-                                                            )
+                                        )
                         , id='tp1')
-                    #catn(tp1)
-                    tp1
-                } 
-                , tabPanel("TS-Interactive", sidebarLayout(sidebarPanel(
+
+                        , tabPanel("TS-Interactive", sidebarLayout(sidebarPanel(
                                          selIn(selectizeInput,'kpi2', 'Oy value (KPI)', kpis.list, multiple = T, options=list(sortField=''))
                                         , hr()
                                         , selIn(,'byyTS2', 'By',  bys.list, multiple = T)
                                         , actionButton("go", "Go"), HTML('<hr/>') 
                                         , hmd(text ='Note: `AUC` was evaluated for`treat = 0`  only
-														and aggregated over offer groups, so depends only on `date+par+model`')
+													and aggregated over offer groups, so depends only on `date+par+model`')
                                         , width = '2', id='sb2')
-                        ,  mainPanel(h3('main Panel')  #, uiOutput('hCharts')
-                                , div(id= 'HiCharts2', class='HC_Block')
-                                , htmlOutput('hO2')
-                                , htmlOutput("log")  # http://shiny.rstudio.com/articles/action-buttons.html
-                           )
-                    ) 
-                    , id='tp2')))
+                                ,  mainPanel(h3('main Panel')  #, uiOutput('hCharts')
+                                        , div(id= 'HiCharts2', class='HC_Block')
+                                        , htmlOutput('hO2')
+                                        , htmlOutput("log")  # http://shiny.rstudio.com/articles/action-buttons.html
+                                   )
+                             ) 
+                         , id='tp2')))
 
 
 server= function(input, output, pl= I) {o= output; i= input
