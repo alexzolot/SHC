@@ -60,8 +60,8 @@ ui<-  fluidPage( h1('Dynamic synchronized time series with Shiny and  Highcharts
                                         , hmd(text ='Note: `AUC` was evaluated for`treat = 0`  only
 													and aggregated over offer groups, so depends only on `date+par+model`')
                                         , width = '2', id='sb2')
-                                ,  mainPanel(h3('main Panel')  #, uiOutput('hCharts')
-                                        , div(id= 'HiCharts2', class='HC_Block')
+                                ,  mainPanel(# h3('main Panel'),  #, uiOutput('hCharts')
+                                         div(id= 'HiCharts2', class='HC_Block')
                                         , htmlOutput('hO2')
                                         , htmlOutput("log")  # http://shiny.rstudio.com/articles/action-buttons.html
                                    )
@@ -157,7 +157,9 @@ For.Meetup= function(){
         
             runApp(display.mode = "showcase")
             
-            shinyApp(ui, server, options=list(display.mode = "showcase"))        
+            shinyApp(ui, server, options=list(display.mode = "showcase"))  
+            
+            runGitHub( "SHC", "alexzolot")       
     }
    
     

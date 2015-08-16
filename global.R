@@ -75,6 +75,9 @@
 		invisible(x)
  	} 
     
+    ecof= function(codf,..., v=T, exec=T, e=parent.frame()){code<-sf(codf,...); if(v) prr(sf('ecof("%s")', code));  if(exec)eval(parse(text=code), envir= e) }
+    
+    
 #' install + library
 #p gh github username 
     libra= function(libs, verb=TRUE, gh='',...){
@@ -136,10 +139,10 @@
 desu= function(x, n=1) deparse(substitute(x, env= parent.frame(n) ))
 
 coernu1= function(x, a='', f=I)  if(is.null(x)) a else f(x)
+gna= function(patt='', pattNeg='^0z', x, pref='', suff=''){u=colnames(x); u= u[grepl(patt, u) & !grepl(pattNeg, u)]; names(u)= pref %+% u %+% suff; u}  # ex: gna('Se', 'Wi', iris, 'p.', '.s')
 
 
 hmd= function(...) HTML(markdownToHTML(..., fragment.only =T))
 
-gna= function(patt='', pattNeg='^0z', x, pref='', suff=''){u=colnames(x); u= u[grepl(patt, u) & !grepl(pattNeg, u)]; names(u)= pref %+% u %+% suff; u}  # ex: gna('Se', 'Wi', iris, 'p.', '.s')
 
 
