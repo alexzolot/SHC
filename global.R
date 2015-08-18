@@ -12,15 +12,11 @@
 { #== init ===
 	#rm(list=ls(envir = .GlobalEnv), envir = .GlobalEnv)
 	
-	options(help='html', digits=4, width=2160, scipen=5, editor='C:\\Program Files (x86)\\Notepad++\\notepad++.exe')
+	options(help='html', digits=4, width=2160, scipen=5)
 	#options(error= NULL)  # options(error= recover) options(error=dump) 
 
 	#options(error= NULL) # options(error= recover) options(error=dump)
 	options(datatable.print.nrows=200)
-    
-	onWin= Sys.getenv('R_PLATFORM')==''
-    if(onWin) setwd('M:/56_block_highchartsTS/clean')
-
 
 #	source('lib/HLP.r')  # or hard coded paths to source files
     
@@ -119,7 +115,7 @@
     libra(magrittr)
     
     
-    options(shiny.error=browser )  # NULL
+    options(shiny.error=NULL )  # NULL browser 
     libra(shiny)
     libra(markdown)
     #source('M:/62_TMoRod/shiny/hiCharts/funcs.R')

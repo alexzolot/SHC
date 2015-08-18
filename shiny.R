@@ -78,6 +78,9 @@ server= function(input, output, pl= I) {o= output; i= input
               byy= list('pars', 'model')  #   byy= list('pars')
               y= 'nxe'  # y= list('nxe', 'mse')
               
+              strr(byy)
+              strr(m)
+              
               m.wd= ecof('dcast.data.table(m, day ~ %s, mean, value.var="%s")', pasc(byy, coll='+'),  y) %>%
                       setkey(day)
         
@@ -102,18 +105,19 @@ server= function(input, output, pl= I) {o= output; i= input
                   res= dtt()
                               
                   L= llply(i$kpi2, function(y){catn(y)
-                                              
-                                  u=  if(le(i$byyTS2) > 0) {
-                                            ecof('dcast.data.table(m, day ~ %s, %s, value.var="%s")', pasc(i$byyTS2, coll='+')
-                                                   , if(kpis[y]$additive) 'sum' else 'mean',  y)
-                                          } else ecof('m[, list(%s= sumn(%1$s %s)), day]',  y
-                                                                  , if(kpis[y]$additive) '' else '* n)/sumn(n')   
-                                  setkey(u, day)
-                                  strr(u)
-                                  if(le(i$kpi2)>1)setnames(u, gna(,'day', u), sf('%s_%s', y, gna(,'day', u)))
-                                  strr(u)
-                                  u
-                                  res<<- if(le(res)==0) u else res[u]  # merge
+                          u=  if(le(i$byyTS2) > 0) {
+                                  strr(i$byyTS2)  
+                                  strr(m)  
+                                  ecof('dcast.data.table(m, day ~ %s, %s, value.var="%s")', pasc(i$byyTS2, coll='+')
+                                           , if(kpis[y]$additive) 'sum' else 'mean',  y)
+                              } else ecof('m[, list(%s= sumn(%1$s %s)), day]',  y
+                                                          , if(kpis[y]$additive) '' else '* n)/sumn(n')   
+                          setkey(u, day)
+                          strr(u)
+                          if(le(i$kpi2)>1)setnames(u, gna(,'day', u), sf('%s_%s', y, gna(,'day', u)))
+                          strr(u)
+                          u
+                          res<<- if(le(res)==0) u else res[u]  # merge
                   })
                   res
            }})
@@ -152,14 +156,24 @@ For.Meetup= function(){
          library(shinyapps)
          shinyapps::setAccountInfo(name='alexzolot', token='6FC9BFE0E441A67200046D6D0B0F95D1', secret='GPxDhI+Rpv+lziX5NYBvLwzulpWuulhOabHInsZ1') 
          # sw("M:/56_block_highchartsTS/clean");  expl()
-        shinyapps::deployApp('.')        
-        shinyapps::deployApp()        
+         shinyapps::deployApp('.')        
+         shinyapps::deployApp()        
         
-            runApp(display.mode = "showcase")
+        
+         # local Shiny server
+         runApp(display.mode = "showcase")
             
-            shinyApp(ui, server, options=list(display.mode = "showcase"))  
+         shinyApp(ui, server, options= list(display.mode = "showcase"))  
             
-            runGitHub( "SHC", "alexzolot")       
+         #
+          runGitHub( "SHC", "alexzolot")       
+            
+            
+            `ssh googmete@googmeter.com', pw='---Ppp00
+            </proc/version                                                                                                                                            ~
+            Linux version 3.12.35.1418868052 (root@openvpn) (gcc version 4.4.7 20120313 (Red Hat 4.4.7-11) (GCC) ) #1 SMP Wed Dec 17 20:04:02 CST 2014
+ 
+			`
     }
    
     
