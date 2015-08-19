@@ -30,7 +30,7 @@ m= fread('in/data.tsv')
 
 hmd= function(...) HTML(markdownToHTML(..., fragment.only =T))
 
-ui<-  fluidPage( h1('Dynamic synchronized time series with Shiny and  Highcharts JS, by Alex Zolot'),
+ui<-  fluidPage( h1('Dynamic synchronized time series with Shiny and  Highcharts JS'),
         tabsetPanel(type = "pills", id='tsp1', position= "left", selected= "TS1"  #type = "tabs"  # Model Performance, Time Series"
                  , tabPanel('Data',dataTableOutput('dtable'))
                  , tabPanel('TS-fixed'
@@ -52,21 +52,26 @@ ui<-  fluidPage( h1('Dynamic synchronized time series with Shiny and  Highcharts
                                         )
                         , id='tp1')
 
-                        , tabPanel("TS-Interactive", sidebarLayout(sidebarPanel(
-                                         selIn(selectizeInput,'kpi2', 'Oy value (KPI)', kpis.list, multiple = T, options=list(sortField=''))
+                , tabPanel("TS-Interactive", sidebarLayout(sidebarPanel(
+                                        selIn(selectizeInput,'kpi2', 'Oy value (KPI)', kpis.list, multiple = T, options=list(sortField=''))
                                         , hr()
                                         , selIn(,'byyTS2', 'By',  bys.list, multiple = T)
                                         , actionButton("go", "Go"), HTML('<hr/>') 
                                         , hmd(text ='Note: `AUC` was evaluated for`treat = 0`  only
-													and aggregated over offer groups, so depends only on `date+par+model`')
+													                                                        and aggregated over offer groups, so depends only on `date+par+model`')
                                         , width = '2', id='sb2')
                                 ,  mainPanel(# h3('main Panel'),  #, uiOutput('hCharts')
-                                         div(id= 'HiCharts2', class='HC_Block')
+                                        div(id= 'HiCharts2', class='HC_Block')
                                         , htmlOutput('hO2')
                                         , htmlOutput("log")  # http://shiny.rstudio.com/articles/action-buttons.html
-                                   )
-                             ) 
-                         , id='tp2')))
+                                )
+                        ) 
+                        , id='tp2')
+                , tabPanel("Help", hmd(text ='`Double-Click` on a chart switches between dragging and zooming of the chart.\n\n\n\n
+**Source**: [github.com/alexzolot/SHC/tree/pub](https://github.com/alexzolot/SHC/tree/pub).\n\n
+**Author**: [Alex Zolot](http://zolot.us)\n\n**Adknowledgment**: *Wanli Cheng* for help with JS; *Andy Kipp* and *Joe Cheng* for help with Shiny.'))
+
+ ))
 
 
 server= function(input, output, pl= I) {o= output; i= input
