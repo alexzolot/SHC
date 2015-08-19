@@ -156,7 +156,7 @@ For.Meetup= function(){
     	 libra(devtools)
          devtools::install_github('rstudio/shinyapps')
          library(shinyapps)
-shinyapps::setAccountInfo(name='alexzolot', token='6FC9BFE0E441A67200046D6D0B0F95D1', secret='GPxDhI+Rpv+lziX5NYBvLwzulpWuulhOabHInsZ1') 
+         shinyapps::setAccountInfo(name='alexzolot', token='6FC9BFE0E441A67200046D6D0B0F95D1', secret='GPxDhI+Rpv+lziX5NYBvLwzulpWuulhOabHInsZ1') 
          # Error in formatDL(rep.int(tag, length(val)), val, style = "list", width = width,  : 
          #   incorrect values of 'indent' and 'width'
 
@@ -169,8 +169,9 @@ shinyapps::setAccountInfo(name='alexzolot', token='6FC9BFE0E441A67200046D6D0B0F9
          shinyApp(ui, server, options= list(display.mode = "showcase"))  
             
          #
-         shiny::runGitHub( "SHC", "alexzolot")       
-            
+        shiny::runGitHub( "SHC", "alexzolot")       
+        shiny::runGitHub( "SHC", "alexzolot", 'pub')       
+        
             
             `ssh googmete@googmeter.com
             </proc/version                                                                                                                                            ~
