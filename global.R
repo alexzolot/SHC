@@ -12,11 +12,11 @@
 { #== init ===
 	#rm(list=ls(envir = .GlobalEnv), envir = .GlobalEnv)
 	
-	options(help='html', digits=4, width=2160, scipen=5)
+	#options(help='html', digits=4, width=2160, scipen=5)
 	#options(error= NULL)  # options(error= recover) options(error=dump) 
 
 	#options(error= NULL) # options(error= recover) options(error=dump)
-	options(datatable.print.nrows=200)
+	#options(datatable.print.nrows=200)
 
 #	source('lib/HLP.r')  # or hard coded paths to source files
     
@@ -74,12 +74,9 @@
     ecof= function(codf,..., v=T, exec=T, e=parent.frame()){code<-sf(codf,...); if(v) prr(sf('ecof("%s")', code));  if(exec)eval(parse(text=code), envir= e) }
     pasc= function(..., coll= ',') pas(..., collapse= coll)
     
-#' install + library
+#' install + libraryry
 #p gh github username 
     libra= function(libs, verb=TRUE, gh='',...){
-#	libs= if(!grepl('\\"|\'| ', li<- deparse(substitute(libs)))) li else cn(libs)  # now libs is a char vector
-#	misspk= nin(gsub('.*\\/','', libs), installed.packages()[,1])
-	        
             libs= if(!grepl('\\"|\'| ', li<- gsub('"','', deparse(substitute(libs))))) li else cn(li)  # now libs is a char vector
             #if(verb)catn(li, libs)
             
@@ -100,24 +97,24 @@
                             if(grepl('\\/', li)) devtools::install_github(li, dependencies= T,...)
                             else install.packages(li, dependencies= T, repos= "http://cran.stat.ucla.edu/",...)
                         }
-                        catt('libra:: Call library ', li) 
-    		            do.call(library, list(li2, character.only =T))
-    		            if(verb) catf('libra:: demo(%s); example(%1$s); vignette("%1$s")\n', li2)
+                        catt('library:: Call libraryry ', li) 
+    		            do.call(libraryry, list(li2, character.only =T))
+    		            if(verb) catf('library:: demo(%s); example(%1$s); vignette("%1$s")\n', li2)
                     })
 	        }
     } #--
     
     
 	
-	libra(plyr) 
-	libra(data.table);  dtt= data.table
+	library(plyr) 
+	library(data.table);  dtt= data.table
     
-    libra(magrittr)
+    library(magrittr)
     
     
     options(shiny.error=NULL )  # NULL browser 
-    libra(shiny)
-    libra(markdown)
+    library(shiny)
+    library(markdown)
     #source('M:/62_TMoRod/shiny/hiCharts/funcs.R')
     #source('lib/funcs.R')	
 #	proot= '.'  # project root

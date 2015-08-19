@@ -12,7 +12,7 @@
 { #== init ===
 	rm(list=ls(envir = .GlobalEnv), envir = .GlobalEnv)
 	
-	options(help='html', digits=4, width=2160, scipen=5, editor='C:\\Program Files (x86)\\Notepad++\\notepad++.exe')
+	options(help='html', digits=4, width=80, scipen=5)
 	options(error= recover)    # options(error= NULL)  # options(error=dump) 
 
 	options(datatable.print.nrows=200)
@@ -156,7 +156,7 @@ For.Meetup= function(){
     	 libra(devtools)
          devtools::install_github('rstudio/shinyapps')
          library(shinyapps)
-         shinyapps::setAccountInfo(name='alexzolot', token='6FC9BFE0E441A67200046D6D0B0F95D1', secret='GPxDhI+Rpv+lziX5NYBvLwzulpWuulhOabHInsZ1') 
+shinyapps::setAccountInfo(name='alexzolot', token='6FC9BFE0E441A67200046D6D0B0F95D1', secret='GPxDhI+Rpv+lziX5NYBvLwzulpWuulhOabHInsZ1') 
          # Error in formatDL(rep.int(tag, length(val)), val, style = "list", width = width,  : 
          #   incorrect values of 'indent' and 'width'
 
