@@ -73,6 +73,8 @@ server= function(input, output, pl= I) {o= output; i= input
                 red= function(...) renderText(sf('<font  color="red"><b>%s</b></font >', ...))
                 
               m= fread('in/data.tsv')
+              #saveRDS(m, 'in/data.rds')
+              #m= readRDS('in/m0.rds')
               o$dtable= renderDataTable(m[,cn('date treat ogroup	og	pars model  imp	clk	ctr auc	mse	nmse xe	nxe'), with=F])
               
               byy= list('pars', 'model')  #   byy= list('pars')
@@ -155,10 +157,11 @@ For.Meetup= function(){
          devtools::install_github('rstudio/shinyapps')
          library(shinyapps)
          shinyapps::setAccountInfo(name='alexzolot', token='6FC9BFE0E441A67200046D6D0B0F95D1', secret='GPxDhI+Rpv+lziX5NYBvLwzulpWuulhOabHInsZ1') 
+         # Error in formatDL(rep.int(tag, length(val)), val, style = "list", width = width,  : 
+         #   incorrect values of 'indent' and 'width'
+
          # sw("M:/56_block_highchartsTS/clean");  expl()
-         shinyapps::deployApp('.')        
          shinyapps::deployApp()        
-        
         
          # local Shiny server
          runApp(display.mode = "showcase")
@@ -166,10 +169,10 @@ For.Meetup= function(){
          shinyApp(ui, server, options= list(display.mode = "showcase"))  
             
          #
-          runGitHub( "SHC", "alexzolot")       
+         shiny::runGitHub( "SHC", "alexzolot")       
             
             
-            `ssh googmete@googmeter.com', pw='---Ppp00
+            `ssh googmete@googmeter.com
             </proc/version                                                                                                                                            ~
             Linux version 3.12.35.1418868052 (root@openvpn) (gcc version 4.4.7 20120313 (Red Hat 4.4.7-11) (GCC) ) #1 SMP Wed Dec 17 20:04:02 CST 2014
  
